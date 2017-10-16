@@ -1,11 +1,9 @@
 /* Given a string, determine if it is a permutatin of a palindrome.
 
 Ideas:
-  If the string has less than, or more than 1 character with an odd frequency, it is not a palindrome permutation.
-  Sort the string, either in-place or in a new array.
-  If the sorted array has more than one character with an odd frequency, it is not a palindrome permutation.
-  If the sorted array has less than one character with an odd frequency, it is not a palindrome permutation.
-
+	If the string is odd, then the only allowable number of odd-frequency characters is 1.
+	If the string is even, then the only allowable number of odd-frequency characters is 0.
+	Keep a frequency map to track the character and the frequency of those characters.
 */
 package main
 
