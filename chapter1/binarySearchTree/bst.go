@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type nodeData struct {
-	data int
+	data string
 }
 
 func (n *nodeData) less(o *nodeData) bool { return n.data < o.data }
@@ -63,11 +63,17 @@ func (t *treeNode) postOrder() {
 }
 
 func main() {
-	root := &treeNode{data: &nodeData{10}}
-	root.addNode(&nodeData{15})
-	root.addNode(&nodeData{13})
-	root.addNode(&nodeData{11})
+	root := &treeNode{data: &nodeData{"sarah"}}
+	root.addNode(&nodeData{"snack"})
+	root.addNode(&nodeData{"little"})
+	root.addNode(&nodeData{"louise"})
+	root.addNode(&nodeData{"kitten"})
+	root.addNode(&nodeData{"penelope"})
 
+	root.postOrder()
+	fmt.Println()
+	root.preOrder()
+	fmt.Println()
 	root.inOrder()
 
 }
