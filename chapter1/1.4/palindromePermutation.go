@@ -36,7 +36,7 @@ func isPalindromePermutation(s string) bool {
 	}
 }
 func main() {
-	s := "abcba"
+	s := "abcbakfkaaf"
 	fmt.Println(s)
 	fmt.Println(isPalindromePermutation(s))
 }
