@@ -40,6 +40,6 @@ func (str s) isUnique() bool {
 }
 
 func main() {
-	str := s{1, 4, 7, 5, 3, 99, 11} //5 is duplicated
+	str := s{1, 4, 7, 5, 3, 99, 11}
 	fmt.Println(str.isUnique())
 }
