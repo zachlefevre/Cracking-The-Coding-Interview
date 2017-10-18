@@ -26,6 +26,9 @@ func (str s) Swap(a, b int) {
 }
 
 func (str s) isUnique() bool {
+	if len(str) > 128 {
+		return false
+	}
 	sort.Sort(str)
 	fmt.Println(str)
 	for i := 1; i < len(str)-1; i++ {

@@ -42,6 +42,9 @@ func main() {
 	str2 := s{1, 7, 53, 88, 6, 8, 9, 64, 5}
 	fmt.Println("first string: ", str1)
 	fmt.Println("second string: ", str2)
+	if len(str1) != len(str2) {
+		fmt.Println("Not permutations of one another. Length bad")
+	}
 	sort.Sort(str1)
 	sort.Sort(str2)
 	if reflect.DeepEqual(str1, str2) {
