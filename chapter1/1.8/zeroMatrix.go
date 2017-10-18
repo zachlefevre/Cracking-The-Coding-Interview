@@ -9,6 +9,10 @@ Ideas:
 	A map can hold the information about what cells are 0 and what cells are 1 (unchanged).
 	A bitvector can hold that same information.
 
+	If no other data structure can be used, it would be possible to iterate through the matrix
+		l -> r, t -> b, and when a 0 is found in cell [a][b] to iterate through
+		the section of the array already traversed, zeroing any cell in row a or col b.
+
 
 */
 
