@@ -21,6 +21,10 @@ func removeDups(list *ll.Sll) {
 	}
 
 	for k := range stats {
+		/*Cannot use for k,v :=... because for v is only
+		evaluated each time the outter loop is run, and thus
+		stats[k] and v would be out of sync and need to be managed outside
+		of the inner loop*/
 		for stats[k] > 1 {
 			list.Remove(k)
 			stats[k]--
