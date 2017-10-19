@@ -49,3 +49,20 @@ func TestToSlice(t *testing.T) {
 	s := list.Lltoas()
 	fmt.Println(s)
 }
+
+func TestRemove(t *testing.T) {
+	var list Sll
+	list.Append(&Node{Data: 88})
+	list.Append(&Node{Data: 89})
+	list.Append(&Node{Data: 11})
+	for i := 0; i <= 22; i++ {
+		list.Append(&Node{Data: i})
+	}
+	list.Printll()
+	list.Remove(88)
+	list.Printll()
+	list.Remove(5)
+	list.Printll()
+	list.Remove(22)
+	list.Printll()
+}

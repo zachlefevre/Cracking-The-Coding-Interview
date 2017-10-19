@@ -48,14 +48,18 @@ func (ll *Sll) Find(d int) (*Node, *Node) {
 	return nil, nil
 }
 
-// func (ll *Sll) Remove(d int) bool {
-// 	prev, toRemove := ll.Find(d)
-// 	if prev == nil {
-// 		ll.head = ll.head.next
-// 	}
-// 	//p.next = p.next.next
-// 	return true
-// }
+func (ll *Sll) Remove(d int) bool {
+	prev, toRemove := ll.Find(d)
+	if prev == nil && toRemove == nil {
+		return false
+	}
+	if prev == nil {
+		ll.head = ll.head.next
+		return true
+	}
+	prev.next = toRemove.next
+	return true
+}
 
 func (ll *Sll) Printll() {
 	for trav := ll.head; trav != nil; trav = trav.next {
