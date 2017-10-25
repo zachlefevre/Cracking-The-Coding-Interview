@@ -16,6 +16,7 @@ type Sll struct {
 func (ll *Sll) Append(n *Node) bool {
 	if ll.Head == nil {
 		ll.Head = n
+		return true
 	} else {
 		trav := ll.Head
 		for ; trav.Next != nil; trav = trav.Next {
@@ -23,7 +24,6 @@ func (ll *Sll) Append(n *Node) bool {
 		trav.Next = n
 		return true
 	}
-	return false
 }
 
 /*
