@@ -26,15 +26,21 @@ package main
 
 import (
 	"../ll"
-	"fmt"
 )
 
 func addNode(n1, n2 *ll.Node, carry int) (*ll.Node, bool) {
-
-	if n1.Data+n2.Data+carry >= 10 {
-		return &ll.Node{Data: (n2.Data + n1.Data + carry) - 10}, true
+	var n1Quantity int
+	var n2Quantity int
+	if n1 != nil {
+		n1Quantity = n1.Data
 	}
-	return &ll.Node{Data: n2.Data + n1.Data + carry}, false
+	if n2 != nil {
+		n2Quantity = n2.Data
+	}
+	if n1Quantity+n2Quantity+carry >= 10 {
+		return &ll.Node{Data: (n1Quantity + n2Quantity + carry) - 10}, true
+	}
+	return &ll.Node{Data: n1Quantity + n2Quantity + carry}, false
 }
 
 func addLists(list1, list2 ll.Sll) (newList ll.Sll) {
@@ -42,7 +48,6 @@ func addLists(list1, list2 ll.Sll) (newList ll.Sll) {
 	j := list2.Head
 	var carryQuantity int
 	for i != nil && j != nil {
-
 		newNode, carry := addNode(i, j, carryQuantity)
 		newList.Append(newNode)
 		if carry {
@@ -52,33 +57,53 @@ func addLists(list1, list2 ll.Sll) (newList ll.Sll) {
 		}
 		i = i.Next
 		j = j.Next
-		if i == nil {
-			for j != nil {
-				//todo (zlefevre): Bug whereby 7.next becomes 7
-				newList.Append(j)
-				fmt.Println("j: ", j, "\t\tj.next: ", j.Next)
-				j = j.Next
+		newList.Printll()
+	}
+	if i == nil {
+		for j != nil {
+			newNode, carry := addNode(i, j, carryQuantity)
+			newList.Append(newNode)
+			if carry {
+				carryQuantity = 1
+			} else {
+				carryQuantity = 0
 			}
+			j = j.Next
+			newList.Printll()
 		}
 	}
-	newList.Printll()
+	if j == nil {
+		for i != nil {
+			newNode, carry := addNode(i, j, carryQuantity)
+			newList.Append(newNode)
+			if carry {
+				carryQuantity = 1
+			} else {
+				carryQuantity = 0
+			}
+			i = i.Next
+			newList.Printll()
+		}
+	}
+	newNode, _ := addNode(i, j, carryQuantity)
+	if newNode.Data > 0 {
+		newList.Append(newNode)
+	}
+
 	return
 }
 
 func main() {
 	list := ll.Sll{}
-	list.Append(&ll.Node{Data: 4})
-	list.Append(&ll.Node{Data: 6})
-	list.Append(&ll.Node{Data: 5})
 	list.Append(&ll.Node{Data: 1})
-	list.Printll()
+	list.Append(&ll.Node{Data: 6})
 	list2 := ll.Sll{}
-	list2.Append(&ll.Node{Data: 4})
-	list2.Append(&ll.Node{Data: 6})
-	list2.Append(&ll.Node{Data: 5})
-	list2.Append(&ll.Node{Data: 2})
 	list2.Append(&ll.Node{Data: 9})
-	list2.Append(&ll.Node{Data: 7})
+	list2.Append(&ll.Node{Data: 3})
+	list2.Append(&ll.Node{Data: 9})
 
-	addLists(list, list2)
+	list.Printll()
+	list2.Printll()
+	sumList := addLists(list2, list)
+	sumList.Printll()
 }
