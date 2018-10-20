@@ -10,5 +10,11 @@ func (n *GraphNode) AddNeighbor(a GraphNode) {
 }
 
 func (n GraphNode) FindPathDFS(d GraphNode) []GraphNode {
+	visited := make(map[*GraphNode]bool)
+	var s Stack
+	s = s.push(n)
+	for len(s) != 0 {
+
+	}
 	return []GraphNode{}
 }
