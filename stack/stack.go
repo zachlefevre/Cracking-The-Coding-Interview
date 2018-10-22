@@ -13,7 +13,7 @@ func (s Stack) Push(v interface{}) Stack {
 func (s Stack) Pop() (Stack, interface{}, error) {
 	l := len(s)
 	if l == 0 {
-		return nil, 0, errors.New("Stack is empty.")
+		return nil, nil, errors.New("Stack is empty.")
 	}
 	return s[:l-1], s[l-1], nil
 }

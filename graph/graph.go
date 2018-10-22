@@ -1,6 +1,11 @@
 package graph
 
-import "github.com/zachlefevre/Cracking-The-Coding-Interview/stack"
+import (
+	"fmt"
+
+	"github.com/zachlefevre/Cracking-The-Coding-Interview/queue"
+	"github.com/zachlefevre/Cracking-The-Coding-Interview/stack"
+)
 
 type GraphNode struct {
 	key      int
@@ -35,6 +40,36 @@ func (n GraphNode) FindPathDFS(goal int) (path []GraphNode, e error) {
 		for _, v := range cur.adjacent {
 			if in, _ := visited[v.key]; !in {
 				s = s.Push(v)
+			}
+		}
+	}
+	return
+}
+
+func (n GraphNode) FindPathBFS(goal int) (path []GraphNode, e error) {
+	visited := make(map[int]bool)
+	var q queue.Queue
+	q = q.Enqueue(n)
+	for {
+		if q.IsEmpty() {
+			break
+		}
+		var val interface{}
+		var err error
+		q, val, err = q.Dequeue()
+		if err != nil {
+			return path, err
+		}
+		cur := val.(GraphNode)
+		path = append(path, cur)
+		visited[cur.key] = true
+		fmt.Println("visited: ", cur.key)
+		if cur.key == goal {
+			break
+		}
+		for _, v := range cur.adjacent {
+			if in, _ := visited[v.key]; !in {
+				q = q.Enqueue(v)
 			}
 		}
 	}
