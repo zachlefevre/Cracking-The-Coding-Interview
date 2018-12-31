@@ -31,11 +31,8 @@ func (str s) isUnique() bool {
 	}
 	sort.Sort(str)
 	fmt.Println(str)
-	for i := 1; i < len(str)-1; i++ {
+	for i := 1; i < len(str); i++ {
 		if str[i] == str[i-1] {
-			return false
-		}
-		if str[i] == str[i+1] {
 			return false
 		}
 	}
