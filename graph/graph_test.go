@@ -20,7 +20,7 @@ func TestDFS_ExistingGraph_Path(t *testing.T) {
 	n.adjacent[0].AddNeighbor(GraphNode{key: 03, value: "d"})
 	n.adjacent[1].AddNeighbor(GraphNode{key: 04, value: "e"})
 	n.adjacent[1].adjacent[0].AddNeighbor(GraphNode{key: 05, value: "f"})
-	path, _ := n.FindPathDFS(03)
+	path, _ := n.FindPathDFS(05)
 	for _, p := range path {
 		fmt.Println(p.key)
 	}
@@ -35,7 +35,7 @@ func TestBFS_ExistingGraph_Path(t *testing.T) {
 	n.adjacent[0].AddNeighbor(GraphNode{key: 03, value: "d"})
 	n.adjacent[1].AddNeighbor(GraphNode{key: 04, value: "e"})
 	n.adjacent[1].adjacent[0].AddNeighbor(GraphNode{key: 05, value: "f"})
-	path, _ := n.FindPathBFS(03)
+	path, _ := n.FindPathBFS(05)
 	for _, p := range path {
 		fmt.Println(p.key)
 	}
