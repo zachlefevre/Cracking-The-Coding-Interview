@@ -1,43 +1,37 @@
 package graph
 
 import (
-	"fmt"
 	"testing"
+
+	"github.com/google/uuid"
 )
 
-func TestAdd_NewNode_NodeWithNeighbor(t *testing.T) {
-	n := GraphNode{value: "root"}
-	n.AddNeighbor(GraphNode{value: "firstNeighbor"})
-	n.AddNeighbor(GraphNode{value: "secondNeighbor"})
-	n.adjacent[0].AddNeighbor(GraphNode{value: "firstNeighborOfFirstNeighbor"})
-	fmt.Println(n)
+func Test_NewNode_NewNeighbor(t *testing.T) {
+	idRoot, _ := uuid.NewUUID()
+	idN1, _ := uuid.NewUUID()
+	r := GraphNode{key: idRoot, value: "root"}
+	n1 := GraphNode{key: idN1, value: "neighbor"}
+	r.AddNeighbor(n1)
+
+	if r.adjacent[0].key != n1.key {
+		t.Fail()
+	}
 }
 
-func TestDFS_ExistingGraph_Path(t *testing.T) {
-	n := GraphNode{key: 0, value: "a"}
-	n.AddNeighbor(GraphNode{key: 01, value: "b"})
-	n.AddNeighbor(GraphNode{key: 02, value: "c"})
-	n.adjacent[0].AddNeighbor(GraphNode{key: 03, value: "d"})
-	n.adjacent[1].AddNeighbor(GraphNode{key: 04, value: "e"})
-	n.adjacent[1].adjacent[0].AddNeighbor(GraphNode{key: 05, value: "f"})
-	path, _ := n.FindPathDFS(05)
-	for _, p := range path {
-		fmt.Println(p.key)
-	}
-	fmt.Println(n)
-}
+func Test_ExistingNode_NewNeighbor(t *testing.T) {
+	idRoot, _ := uuid.NewUUID()
+	idN1, _ := uuid.NewUUID()
+	idN2, _ := uuid.NewUUID()
+	r := GraphNode{key: idRoot, value: "root"}
+	n1 := GraphNode{key: idN1, value: "neighbor1"}
+	n2 := GraphNode{key: idN2, value: "neighbor2"}
+	r.AddNeighbor(n1)
+	r.AddNeighbor(n2)
 
-func TestBFS_ExistingGraph_Path(t *testing.T) {
-	n := GraphNode{key: 0, value: "a"}
-	n.AddNeighbor(GraphNode{key: 01, value: "b"})
-	n.AddNeighbor(GraphNode{key: 02, value: "c"})
-	n.AddNeighbor(GraphNode{key: 06, value: "g"})
-	n.adjacent[0].AddNeighbor(GraphNode{key: 03, value: "d"})
-	n.adjacent[1].AddNeighbor(GraphNode{key: 04, value: "e"})
-	n.adjacent[1].adjacent[0].AddNeighbor(GraphNode{key: 05, value: "f"})
-	path, _ := n.FindPathBFS(05)
-	for _, p := range path {
-		fmt.Println(p.key)
+	if r.adjacent[0].key != n1.key {
+		t.Fail()
 	}
-	fmt.Println(n)
+	if r.adjacent[1].key != n2.key {
+		t.Fail()
+	}
 }
