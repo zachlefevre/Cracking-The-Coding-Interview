@@ -34,4 +34,8 @@ func Test_ExistingNode_NewNeighbor(t *testing.T) {
 	if r.adjacent[1].key != n2.key {
 		t.Fail()
 	}
+
+	func Test_tTest(t *testing.T){
+		t.Fail()
+	}
 }
