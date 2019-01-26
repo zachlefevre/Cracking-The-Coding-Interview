@@ -3,12 +3,14 @@ package graph
 import (
 	"fmt"
 
+	"github.com/google/uuid"
+
 	"github.com/zachlefevre/Cracking-The-Coding-Interview/queue"
 	"github.com/zachlefevre/Cracking-The-Coding-Interview/stack"
 )
 
 type GraphNode struct {
-	key      int
+	key      uuid.UUID
 	value    interface{}
 	adjacent []GraphNode
 }
@@ -17,8 +19,8 @@ func (n *GraphNode) AddNeighbor(a GraphNode) {
 	n.adjacent = append(n.adjacent, a)
 }
 
-func (n GraphNode) FindPathDFS(goal int) (path []GraphNode, e error) {
-	visited := make(map[int]bool)
+func (n GraphNode) FindPathDFS(goal uuid.UUID) (path []GraphNode, e error) {
+	visited := make(map[uuid.UUID]bool)
 	var s stack.Stack
 	s = s.Push(n)
 	for {
@@ -46,8 +48,8 @@ func (n GraphNode) FindPathDFS(goal int) (path []GraphNode, e error) {
 	return
 }
 
-func (n GraphNode) FindPathBFS(goal int) (path []GraphNode, e error) {
-	visited := make(map[int]bool)
+func (n GraphNode) FindPathBFS(goal uuid.UUID) (path []GraphNode, e error) {
+	visited := make(map[uuid.UUID]bool)
 	var q queue.Queue
 	q = q.Enqueue(n)
 	for {
