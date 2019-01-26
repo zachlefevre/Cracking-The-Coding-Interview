@@ -35,7 +35,7 @@ func Test_ExistingNode_NewNeighbor(t *testing.T) {
 		t.Fail()
 	}
 
-	func Test_tTest(t *testing.T){
-		t.Fail()
-	}
+}
+func Test_tTest(t *testing.T) {
+	t.Fail()
 }
