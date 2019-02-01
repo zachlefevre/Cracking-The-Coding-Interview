@@ -6,7 +6,7 @@ env:
   - DIR_NAME=graph
   - DIR_NAME=arrays_and_strings\1.1
 
-before_script:
+before_install:
   - docker build -f Dockerfile -t frlnbrg/tst $DIR_NAME
 script:
   - docker run frlnbrg/tst
