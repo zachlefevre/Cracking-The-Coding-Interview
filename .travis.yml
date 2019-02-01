@@ -4,7 +4,7 @@ services:
 
 env:
   - DIR_NAME=graph
-  - DIR_NAME=arrays_and_strings\1.1
+  - DIR_NAME=arrays_and_strings/1.1
 
 before_install:
   - docker build -t frlnbrg/tst:latest $DIR_NAME
