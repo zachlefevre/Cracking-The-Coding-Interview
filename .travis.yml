@@ -7,6 +7,6 @@ env:
   - DIR_NAME=arrays_and_strings\1.1
 
 before_install:
-  - docker build -f Dockerfile -t frlnbrg/tst $DIR_NAME
+  - docker build -t frlnbrg/tst:latest $DIR_NAME
 script:
   - docker run frlnbrg/tst

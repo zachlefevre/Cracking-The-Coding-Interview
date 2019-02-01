@@ -2,7 +2,6 @@ package isUnique
 
 import (
 	"errors"
-	"fmt"
 	"sort"
 )
 
@@ -13,6 +12,7 @@ func (str s) Less(a, b int) bool { return str[a] < str[b] }
 func (str s) Swap(a, b int) {
 	str[a], str[b] = str[b], str[a]
 	return
+
 }
 
 func (str s) isUnique() (bool, error) {
@@ -23,7 +23,6 @@ func (str s) isUnique() (bool, error) {
 		return false, errors.New("string cannot be empty")
 	}
 	sort.Sort(str)
-	fmt.Println(str)
 	for i := 1; i < len(str); i++ {
 		if str[i] == str[i-1] {
 			return false, nil
