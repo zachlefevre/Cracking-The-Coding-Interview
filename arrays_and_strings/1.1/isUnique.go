@@ -1,6 +1,7 @@
-package main
+package isUnique
 
 import (
+	"errors"
 	"fmt"
 	"sort"
 )
@@ -14,21 +15,19 @@ func (str s) Swap(a, b int) {
 	return
 }
 
-func (str s) isUnique() bool {
+func (str s) isUnique() (bool, error) {
 	if len(str) > 128 {
-		return false
+		return false, nil
+	}
+	if len(str) <= 0 {
+		return false, errors.New("string cannot be empty")
 	}
 	sort.Sort(str)
 	fmt.Println(str)
 	for i := 1; i < len(str); i++ {
 		if str[i] == str[i-1] {
-			return false
+			return false, nil
 		}
 	}
-	return true
-}
-
-func main() {
-	str := s{1, 4, 7, 5, 3, 99, 11}
-	fmt.Println(str.isUnique())
+	return true, nil
 }

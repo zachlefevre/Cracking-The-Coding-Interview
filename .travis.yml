@@ -4,5 +4,7 @@ services:
 
 
 script:
-  - docker build -t frlnbrg/graphtest graph
-  - docker run frlnbrg/graphtest
+  - docker build -f Dockerfile -t frlnbrg/tst graph
+  - docker run frlnbrg/tst
+  - docker build -f Dockerfile -t 'frlnbrg/tst arrays_and_strings\1.1'
+  - docker run frlnbrg/tst
