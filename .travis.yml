@@ -2,9 +2,10 @@ sudo: required
 services:
   - docker
 
-
+before_script:
+  - docker build -f Dockerfile -t frlnbrg/graph graph
+  - docker build -f Dockerfile -t 'frlnbrg/isunique arrays_and_strings\1.1'
 script:
-  - docker build -f Dockerfile -t frlnbrg/tst graph
-  - docker run frlnbrg/tst
-  - docker build -f Dockerfile -t 'frlnbrg/tst arrays_and_strings\1.1'
-  - docker run frlnbrg/tst
+  - docker run frlnbrg/graph
+
+  - docker run frlnbrg/isunique
