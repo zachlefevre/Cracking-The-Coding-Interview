@@ -2,10 +2,11 @@ sudo: required
 services:
   - docker
 
-before_script:
-  - docker build -f Dockerfile -t frlnbrg/graph graph
-  - docker build -f Dockerfile -t 'frlnbrg/isunique arrays_and_strings\1.1'
-script:
-  - docker run frlnbrg/graph
+env:
+  - DIR_NAME=graph
+  - DIR_NAME=arrays_and_strings\1.1
 
-  - docker run frlnbrg/isunique
+before_script:
+  - docker build -f Dockerfile -t frlnbrg/tst $DIR_NAME
+script:
+  - docker run frlnbrg/tst
